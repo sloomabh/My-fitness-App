@@ -29,7 +29,7 @@ const ExerciseDetail = () => {
       setExerciseDetail(exerciseDetailData);
 
       const exerciseVideosData = await fetchData(
-        `${youtubeSearchUrl}/search?query=${exerciseDetailData.name} exercise`,
+        `${youtubeSearchUrl}/search?query=${exerciseDetailData.name}`,
         youtubeOptions
       );
       setExerciseVideos(exerciseVideosData.contents);
@@ -48,6 +48,7 @@ const ExerciseDetail = () => {
     };
 
     fetchExercisesData();
+    console.log(exerciseVideos);
   }, [id]);
 
   if (!exerciseDetail) return <div>No Data</div>;

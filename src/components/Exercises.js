@@ -9,19 +9,6 @@ import Loader from "./Loader";
 const Exercises = ({ exercises, setExercises, bodyPart }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const exercisesPerPage = 6;
-  // Pagination
-  const indexOfLastExercise = currentPage * exercisesPerPage;
-  const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
-  const currentExercises = exercises.slice(
-    indexOfFirstExercise,
-    indexOfLastExercise
-  );
-
-  const paginate = (event, value) => {
-    setCurrentPage(value);
-
-    window.scrollTo({ top: 1800, behavior: "smooth" });
-  };
 
   // setExercices by clicking on exerciceCard
   useEffect(() => {
@@ -45,6 +32,20 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
 
     fetchExercisesData();
   }, [bodyPart]);
+
+  // Pagination
+  const indexOfLastExercise = currentPage * exercisesPerPage;
+  const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
+  const currentExercises = exercises.slice(
+    indexOfFirstExercise,
+    indexOfLastExercise
+  );
+
+  const paginate = (event, value) => {
+    setCurrentPage(value);
+
+    window.scrollTo({ top: 1800, behavior: "smooth" });
+  };
 
   if (!currentExercises.length) return <Loader />;
 
@@ -86,38 +87,3 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
 };
 
 export default Exercises;
-
-/*
- 
-
- 
-
- 
-
-
-
-
-
-
-  *
-  **
-  *
-  * *
-  * *
-  * *
-  * *
-  * 
-  *   <Stack sx={{ mt: { lg: "114px", xs: "70px" } }} alignItems="center">
-        {exercises.length > 9 && (
-          <Pagination
-            color="standard"
-            shape="rounded"
-            defaultPage={1}
-            count={Math.ceil(exercises.length / exercisesPerPage)}
-            page={currentPage}
-            onChange={paginate}
-            size="large"
-          />
-        )}
-      </Stack>
-      */
