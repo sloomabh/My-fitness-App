@@ -48,9 +48,8 @@ const ExerciseDetail = () => {
     };
 
     fetchExercisesData();
-    console.log(exerciseVideos);
   }, [id]);
-
+  console.log(exerciseVideos);
   if (!exerciseDetail) return <div>No Data</div>;
 
   return (
